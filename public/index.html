@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Messenger</title>
+</head>
+<body>
+  <h1>Messenger</h1>
+  <div id="chat">
+    <div id="messages"></div>
+  </div>
+
+  <input type="text" id="messageInput" placeholder="Type a message">
+  <button onclick="sendMessage()">Send</button>
+  
+  <input type="file" id="fileInput">
+  <button onclick="sendFile()">Send File</button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const messagesDiv = document.getElementById('messages');
+    const messageInput = document.getElementById('messageInput');
+    const fileInput = document.getElementById('fileInput');
+
+    socket.on('message', (data) => {
+      const message = document.createElement('p');
+      message.textContent = data;
+      messagesDiv.appendChild(message);
+    });
+
+    socket.on('file-upload', (data) => {
+      const fileLink = document.createElement('a');
+      fileLink.href = `/uploads/${data.filename}`;
+      fileLink.textContent = `Download ${data.originalname}`;
+      messagesDiv.appendChild(fileLink);
+    });
+
+    function sendMessage() {
+      const message = messageInput.value;
+      socket.emit('message', message);
+      messageInput.value = '';
+    }
+
+    function sendFile() {
+      const file = fileInput.files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+
+      fetch('/upload', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        socket.emit('file-upload', data);
+      });
+    }
+  </script>
+</body>
+</html>
