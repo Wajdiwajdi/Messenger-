@@ -2,31 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messenger</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=128, height=120, initial-scale=1.0">
+    <title>Old Phone Site</title>
+    <style>
+        /* Basic CSS for low-res phones */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            background-color: #f0f0f0;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #0078FF;
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+        }
+
+        .content {
+            padding: 10px;
+            text-align: center;
+        }
+
+        a {
+            display: block;
+            margin: 5px 0;
+            color: #0078FF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            font-size: 10px;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div class="messenger-container">
-        <header class="messenger-header">
-            <h2>Chat with John Doe</h2>
-        </header>
-        <div class="chat-box" id="chat-box">
-            <div class="message user-message">
-                <p>Hello! How are you?</p>
-                <span class="time">10:30 AM</span>
-            </div>
-            <div class="message other-message">
-                <p>I'm good, thanks! You?</p>
-                <span class="time">10:31 AM</span>
-            </div>
-        </div>
-        <div class="message-input">
-            <input type="text" placeholder="Type a message..." id="message-input">
-            <button id="send-btn">Send</button>
-        </div>
+    <header>
+        <h1>My Simple Site</h1>
+    </header>
+
+    <div class="content">
+        <p>Welcome to the mobile site!</p>
+        <a href="#link1">Link 1</a>
+        <a href="#link2">Link 2</a>
+        <a href="#link3">Link 3</a>
     </div>
 
-    <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2024 My Site</p>
+    </footer>
 </body>
 </html>
